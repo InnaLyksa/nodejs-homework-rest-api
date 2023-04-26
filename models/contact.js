@@ -4,10 +4,6 @@ const { handleMongooseError, patterns } = require("../helpers");
 
 const { nameRegexp, phoneRegexp } = patterns;
 
-// const nameRegexp = /^[A-Za-zА-Яа-я ]+$/;
-
-// const phoneRegexp = /^\(\d{3}\) \d{3}-\d{4}$/;
-
 const validationSchema = Joi.object({
 	name: Joi.string()
 		.min(2)
@@ -61,7 +57,13 @@ const contactSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		owner: {
+			type: Schema.Types.ObjectId,
+			ref: "user",
+			required: true,
+		},
 	},
+
 	{ versionKey: false, timestamps: true },
 );
 

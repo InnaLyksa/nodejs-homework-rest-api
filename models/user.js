@@ -30,6 +30,10 @@ const loginSchema = Joi.object({
 	subscription: Joi.string().valid(...SUBSCRIPTION_TYPES),
 });
 
+const updateSubcriptionSchema = Joi.object({
+	subscription: Joi.string().valid(...SUBSCRIPTION_TYPES),
+});
+
 const userSchema = new Schema(
 	{
 		password: {
@@ -64,4 +68,5 @@ module.exports = {
 	User,
 	loginSchema,
 	registerSchema,
+	updateSubcriptionSchema,
 };
