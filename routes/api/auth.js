@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const ctrl = require("../../controllers/authControllers");
-const { validateBody, isValidId, authenticate, upload } = require("../../middlewares");
+const { validateBody, authenticate, upload } = require("../../middlewares");
 const { loginSchema, registerSchema, updateSubcriptionSchema } = require("../../models");
 
 router.post("/register", validateBody(registerSchema), ctrl.register);
