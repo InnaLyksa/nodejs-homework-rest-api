@@ -3,9 +3,14 @@ const router = express.Router();
 
 const ctrl = require("../../controllers/authControllers");
 const { validateBody, authenticate, upload } = require("../../middlewares");
-const { loginSchema, registerSchema, updateSubcriptionSchema } = require("../../models");
+const { loginSchema, registerSchema, updateSubcriptionSchema, emailSchema } = require("../../models");
 
 router.post("/register", validateBody(registerSchema), ctrl.register);
+
+router.get("/verify/:verificationToken", ctrl.verifyEmail);
+
+router.post("/verify", validateBody(emailSchema), ctrl.resendVerifyEmail);
+
 router.post("/login", validateBody(loginSchema), ctrl.login);
 router.get("/current", authenticate, ctrl.getCurrent);
 
